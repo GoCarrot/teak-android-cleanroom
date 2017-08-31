@@ -12,17 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package io.teak.apps.cleanroom;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import org.junit.Test;
 
-public class MainActivity extends AppCompatActivity {
+import static org.hamcrest.core.IsNot.*;
+import static org.junit.Assert.*;
+import static org.junit.Assume.*;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+import io.teak.sdk.Teak;
+
+public class SanityCheck {
+    @Test
+    public void version_Matches() throws Exception {
+        assumeNotNull(System.getProperty("cleanroom_sdk_version"));
+        assumeThat(System.getProperty("cleanroom_sdk_version"), not(""));
+
+        assertEquals(System.getProperty("cleanroom_sdk_version"), Teak.SDKVersion);
     }
 }
