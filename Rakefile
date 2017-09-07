@@ -39,6 +39,10 @@ task :test do
   gradle "test"
 end
 
+task :connectedTest do
+  gradle "connectedAndroidTest"
+end
+
 task :install do
 
 end

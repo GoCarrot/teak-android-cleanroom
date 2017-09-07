@@ -16,20 +16,18 @@ package io.teak.apps.cleanroom;
 
 import org.junit.Test;
 
-import static org.hamcrest.core.IsNot.*;
 import static org.junit.Assert.*;
-import static org.junit.Assume.*;
 
-import io.teak.sdk.Teak;
+import io.teak.sdk.TeakNotification;
 
-public class SanityCheck {
+public class ScheduleNotification {
     @Test
-    public void version_Matches() throws Exception {
-        assumeNotNull(System.getProperty("cleanroom_sdk_version"));
-        assumeThat(System.getProperty("cleanroom_sdk_version"), not(""));
-
-        assertEquals(System.getProperty("cleanroom_sdk_version"), Teak.SDKVersion);
+    public void creativeId_null() throws Exception {
+        assertNull(TeakNotification.scheduleNotification(null, null, 0));
     }
 
-    // TODO: Test that Teak throws an exception for R.string.io_teak_app_id etc
+    @Test
+    public void defaultMessage_null() throws Exception {
+        assertNull(TeakNotification.scheduleNotification("foo", null, 0));
+    }
 }

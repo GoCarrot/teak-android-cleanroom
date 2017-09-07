@@ -31,12 +31,24 @@ android {
 }
 
 dependencies {
+    compile(name:'teak', ext:'aar')
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    testCompile 'junit:junit:4.12'
+
+    androidTestCompile ('org.powermock:powermock-mockito-release-full:1.6.0') {
+        exclude module: 'hamcrest-core'
+        exclude module: 'objenesis'
+    }
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile(name:'teak', ext:'aar')
+    androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile 'com.linkedin.dexmaker:dexmaker-mockito:2.2.0'
 }

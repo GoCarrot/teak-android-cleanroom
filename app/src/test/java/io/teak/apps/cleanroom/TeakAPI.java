@@ -16,20 +16,17 @@ package io.teak.apps.cleanroom;
 
 import org.junit.Test;
 
+import java.security.InvalidParameterException;
+
 import static org.hamcrest.core.IsNot.*;
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;
 
 import io.teak.sdk.Teak;
 
-public class SanityCheck {
-    @Test
-    public void version_Matches() throws Exception {
-        assumeNotNull(System.getProperty("cleanroom_sdk_version"));
-        assumeThat(System.getProperty("cleanroom_sdk_version"), not(""));
-
-        assertEquals(System.getProperty("cleanroom_sdk_version"), Teak.SDKVersion);
+public class TeakAPI {
+    @Test(expected = InvalidParameterException.class)
+    public void onCreate_null() throws Exception {
+        Teak.onCreate(null);
     }
-
-    // TODO: Test that Teak throws an exception for R.string.io_teak_app_id etc
 }
